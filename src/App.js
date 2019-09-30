@@ -31,7 +31,12 @@ class App extends React.Component {
       const todoItem = todoItems[index];
 
       if (todoItem.id === todoItemId) {
-        todoItem.completed = true;
+        if (todoItem.completed) {
+          todoItem.completed = false;
+        } else {
+          todoItem.completed = true;
+        }
+
         break;
       }
     }
