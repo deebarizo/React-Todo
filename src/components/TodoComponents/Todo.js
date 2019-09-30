@@ -13,11 +13,25 @@ class Todo extends React.Component {
   render() {
     const { todoItem, handleTodoItemClick } = this.props;
 
+    console.log("Todo.js todoItem", todoItem);
+
     if (!todoItem) {
       return null;
     }
 
-    return <StyledDiv onClick={handleTodoItemClick}>{todoItem.task}</StyledDiv>;
+    let lineThroughToggle = { textDecoration: "none" };
+
+    if (todoItem.completed) {
+      lineThroughToggle = { textDecoration: "line-through" };
+    }
+
+    return (
+      <StyledDiv
+        onClick={() => handleTodoItemClick(todoItem.id)}
+        style={lineThroughToggle}>
+        {todoItem.task}
+      </StyledDiv>
+    );
   }
 }
 

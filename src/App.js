@@ -24,8 +24,24 @@ class App extends React.Component {
     };
   }
 
-  handleTodoItemClick = event => {
-    event.target.style.textDecoration = "line-through";
+  handleTodoItemClick = todoItemId => {
+    console.log("handleTodoItemClick todoItemId", todoItemId);
+    const todoItems = this.state.todoItems;
+
+    for (let index = 0; index < todoItems.length; index += 1) {
+      const todoItem = todoItems[index];
+
+      if (todoItem.id === todoItemId) {
+        todoItem.completed = true;
+        break;
+      }
+    }
+
+    console.log("handleTodoItemClick todoItems", todoItems);
+
+    this.setState({ todoItems });
+
+    // event.target.style.textDecoration = "line-through";
   };
 
   handleInputChange = event => {
