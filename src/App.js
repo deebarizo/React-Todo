@@ -25,7 +25,6 @@ class App extends React.Component {
   }
 
   handleTodoItemClick = todoItemId => {
-    console.log("handleTodoItemClick todoItemId", todoItemId);
     const todoItems = this.state.todoItems;
 
     for (let index = 0; index < todoItems.length; index += 1) {
@@ -40,8 +39,6 @@ class App extends React.Component {
     console.log("handleTodoItemClick todoItems", todoItems);
 
     this.setState({ todoItems });
-
-    // event.target.style.textDecoration = "line-through";
   };
 
   handleInputChange = event => {
@@ -76,7 +73,15 @@ class App extends React.Component {
     }
   };
 
-  handleClearCompleted = () => alert("Clear Completed");
+  handleClearCompleted = event => {
+    event.preventDefault();
+
+    const todoItems = this.state.todoItems;
+
+    const result = todoItems.filter(todoItem => todoItem.completed === false);
+
+    this.setState({ todoItems: result });
+  };
 
   render() {
     const { todoItem, todoItems } = this.state;
